@@ -1,0 +1,34 @@
+{
+  "name": "node_work1",
+  "version": "1.0.0",
+  "description": "A simple api in nodejs",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npm run migrate-test:down && npm run migrate-test:up",
+    "posttest": "npm run migrate-test:down",
+    "test": "cross-env NODE_ENV=test nyc --reporter lcov --reporter text mocha --exist --recursive --timeout=150000 tests/**/*.js",
+    "start": "nodemon index.js",
+    "migrate:up": "db-migrate up --config database.json -e dev",
+    "migrate:down": "db-migrate down -c 2000 --config database.json -e dev",
+    "migrate-test:up": "db-migrate up --config database.json -e test",
+    "migrate-test:down": "db-migrate down -c 200 -e test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "chai": "^4.3.4",
+    "cross-env": "^7.0.3",
+    "db-migrate": "^0.11.12",
+    "db-migrate-pg": "^1.2.2",
+    "dotenv": "^8.5.1",
+    "express": "^4.17.1",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.4.0",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
+    "pg": "^8.6.0",
+    "supertest": "^6.1.3"
+  }
+}
